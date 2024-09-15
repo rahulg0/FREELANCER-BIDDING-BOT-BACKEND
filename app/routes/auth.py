@@ -6,26 +6,22 @@ from app.config import settings
 
 router = APIRouter()
 
-client_id = settings.client_id
-client_secret = settings.client_secret
-authorization_base_url = settings.authorization_base_url
-token_url = settings.token_url
-redirect_uri = settings.redirect_uri
+client_id = settings.CLIENT_ID
+client_secret = settings.CLIENT_SECRET
+authorization_base_url = settings.AUTHORIZATION_BASE_URL
+token_url = settings.TOKEN_URL
+redirect_uri = settings.REDIRECT_URI
 
 freelancer = OAuth2Session(client_id, redirect_uri=redirect_uri)
-
-
 
 @router.get("/auth")
 async def auth():
     authorization_url, state = freelancer.authorization_url(authorization_base_url)
     return RedirectResponse(authorization_url)
 
-
 @router.get("/callback")
 async def callback(request: Request):
-    code = request.query_params.get('code') 
-    
+    code = request.query_params.get('code')     
     if code:
         payload = {
             'grant_type': 'authorization_code',
@@ -33,13 +29,11 @@ async def callback(request: Request):
             'client_id': client_id,
             'client_secret': client_secret,
             'redirect_uri': redirect_uri
-        }
-        
+        }       
         headers = {
             'content-type': 'application/x-www-form-urlencoded'
         }        
-        response = requests.post(token_url, data=payload, headers=headers)
-        
+        response = requests.post(token_url, data=payload, headers=headers)        
         if response.status_code == 200:
             token_data = response.json() 
             return {"access_token": token_data}

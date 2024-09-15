@@ -6,11 +6,12 @@ import os
 load_dotenv()
 
 class Settings(BaseSettings):
-    client_id: str = os.getenv("CLIENT_SECRET")
-    client_secret: str = os.getenv("CLIENT_ID")
-    authorization_base_url: str = os.getenv("AUTHORIZATION_BASE_URL")
-    token_url: str = os.getenv("TOKEN_URL")
-    redirect_uri: str = os.getenv("REDIRECT_URI")
+    CLIENT_SECRET: str = os.getenv("CLIENT_SECRET")
+    CLIENT_ID: str = os.getenv("CLIENT_ID")
+    AUTHORIZATION_BASE_URL: str = os.getenv("AUTHORIZATION_BASE_URL")
+    TOKEN_URL: str = os.getenv("TOKEN_URL")
+    REDIRECT_URI: str = os.getenv("REDIRECT_URI")
+    BASE_URL: str = os.getenv("BASE_URL")
 
     class Config:
         env_file = ".env"
