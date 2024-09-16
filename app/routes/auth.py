@@ -3,6 +3,14 @@ from fastapi import APIRouter,Request
 from starlette.responses import RedirectResponse
 from requests_oauthlib import OAuth2Session
 from app.config import settings
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+)
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -33,7 +41,8 @@ async def callback(request: Request):
         headers = {
             'content-type': 'application/x-www-form-urlencoded'
         }        
-        response = requests.post(token_url, data=payload, headers=headers)        
+        response = requests.post(token_url, data=payload, headers=headers)  
+        logger.info(response)      
         if response.status_code == 200:
             token_data = response.json() 
             return {"access_token": token_data}
