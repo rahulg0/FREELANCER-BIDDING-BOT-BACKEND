@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     TOKEN_URL: str = os.getenv("TOKEN_URL")
     REDIRECT_URI: str = os.getenv("REDIRECT_URI")
     BASE_URL: str = os.getenv("BASE_URL")
+    GEMINI_KEY: str = os.getenv("GEMINI_KEY")
 
     class Config:
         env_file = ".env"
