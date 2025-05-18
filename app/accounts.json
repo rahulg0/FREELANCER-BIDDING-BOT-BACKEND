@@ -1,0 +1,17 @@
+
+{
+  "accounts": [
+ 
+    {
+      "name": "main_account",
+      "token": "EJtm6whUSLW6YxfjyA1XmEHEoO8Nas",
+      "bidder_id":11895133 
+    },
+{
+      "name": "main2_account",
+      "token": "iVGJpX4Hg4lWc3ZPg0p9gO3NDNWNVL",
+      "bidder_id": 8960383
+    }
+  ]
+
+}
